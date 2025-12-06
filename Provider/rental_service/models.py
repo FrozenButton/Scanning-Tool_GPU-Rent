@@ -50,7 +50,7 @@ class Transaction(Base):
     user_id = Column(String, ForeignKey("users.id"), nullable=False)
     amount = Column(Integer, nullable=False)
     type = Column(String, nullable=False)
-    metadata = Column(JSON, nullable=True)
+    details = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
 
     user = relationship("User")

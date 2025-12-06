@@ -53,7 +53,7 @@ class TransactionView(BaseModel):
     id: str
     amount: int
     type: str
-    metadata: Optional[Dict[str, Any]] = None
+    details: Optional[Dict[str, Any]] = None
     created_at: datetime
 
     class Config:

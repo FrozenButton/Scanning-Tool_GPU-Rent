@@ -34,7 +34,7 @@ def add_credits(db: Session, user_id: str, amount: int, payment_id: Optional[str
             user_id=user_id,
             amount=amount,
             type="purchase",
-            metadata={"payment_id": payment_id} if payment_id else None,
+            details={"payment_id": payment_id} if payment_id else None,
         )
     )
 
