@@ -5,3 +5,11 @@ mss
 flask
 keyboard
 ollama
+fastapi
+uvicorn
+sqlalchemy
+passlib[bcrypt]
+python-jose[cryptography]
+stripe
+requests
+pydantic

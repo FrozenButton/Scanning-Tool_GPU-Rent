@@ -50,4 +50,9 @@
 - File issues or feature requests on [GitHub Issues](https://github.com/FrozenButton/Scanning-Tool/issues).
 - PRs are welcome—please include a short description of your change and testing steps.
 
+## Running the paid GPU rental backend
+- A FastAPI service in `rental_service/` adds authentication, credit metering, Stripe checkout hooks, and a job queue that proxies scan payloads to your GPU worker.
+- Configure packs and the GPU endpoint via `rental_config.json` and environment variables, then start with `python -m rental_service.server`.
+- See `docs/rental_service_setup.md` for packaging the backend as a PyInstaller executable and the end-to-end flow.
+
 Happy mining! 🪨⛏️
