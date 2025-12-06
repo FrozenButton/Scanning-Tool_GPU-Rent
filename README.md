@@ -50,4 +50,14 @@
 - File issues or feature requests on [GitHub Issues](https://github.com/FrozenButton/Scanning-Tool/issues).
 - PRs are welcome—please include a short description of your change and testing steps.
 
+## Running the paid GPU rental backend
+- The provider bundle now lives in `Provider/` with the FastAPI backend in `Provider/rental_service/` and the Ollama worker in `Provider/provider_service/`.
+- Configure packs and the GPU endpoint via `Provider/rental_config.json` and `Provider/provider_config.json`, then start both services with `Provider/run_provider.bat` (opens two windows) or run individually with `python -m rental_service.server` and `python -m provider_service.service` from inside `Provider/`.
+- See `docs/rental_service_setup.md` for packaging the backend as a PyInstaller executable and the end-to-end flow.
+- For a concise walkthrough of how to launch each service (client and provider), read `RUNNING_SERVICES.md`.
+
+## Two-part rental deployment
+- **Player client agent (gaming PC):** lives in `Client/client_agent/`. Run `Client/run_client.bat` or `python -m client_agent.agent login|create-key|scan|poll` from inside `Client/`. Configure `client_config.json` (or `CLIENT_CONFIG_PATH`) for the backend URL and API key; package with `pyinstaller --onefile client_agent/agent.py` for a private EXE.
+- **GPU provider worker (renter PC):** runs from `Provider/`. Use `Provider/run_provider.bat` to spawn the rental API and the Ollama worker together, or start them separately with `python -m rental_service.server` and `python -m provider_service.service`. Configure `provider_config.json` (or `PROVIDER_CONFIG_PATH`) to set `gpu_device`, `ollama_host`, and a shared secret. See `docs/two_part_setup.md` for wiring details.
+
 Happy mining! 🪨⛏️
