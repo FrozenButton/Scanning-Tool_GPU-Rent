@@ -13,3 +13,4 @@ python-jose[cryptography]
 stripe
 requests
 pydantic[email]
+email-validator

@@ -6,4 +6,5 @@ python-jose[cryptography]>=3.3.0
 stripe>=10.0.0
 requests>=2.32.0
 pydantic[email]>=2.7.0
+email-validator>=2.1.0.post1
 ollama>=0.1.0
