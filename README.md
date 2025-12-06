@@ -55,4 +55,8 @@
 - Configure packs and the GPU endpoint via `rental_config.json` and environment variables, then start with `python -m rental_service.server`.
 - See `docs/rental_service_setup.md` for packaging the backend as a PyInstaller executable and the end-to-end flow.
 
+## Two-part rental deployment
+- **Player client agent (gaming PC):** `python -m client_agent.agent login|create-key|scan|poll` uses the rental API to buy credits and submit scans. Configure `client_config.json` (or `CLIENT_CONFIG_PATH`) for the backend URL and API key; package with `pyinstaller --onefile client_agent/agent.py` for a private EXE.
+- **GPU provider worker (renter PC):** `python -m provider_service.service` exposes `/run` against a chosen GPU and Ollama host. Configure `provider_config.json` (or `PROVIDER_CONFIG_PATH`) to set `gpu_device`, `ollama_host`, and a shared secret. See `docs/two_part_setup.md` for wiring details.
+
 Happy mining! 🪨⛏️

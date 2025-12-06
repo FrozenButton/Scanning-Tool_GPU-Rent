@@ -4,5 +4,6 @@
   "credit_packs": {
     "starter_10": {"credits": 10, "stripe_price": "price_replace_me"},
     "pro_50": {"credits": 50, "stripe_price": "price_replace_me"}
-  }
+  },
+  "gpu_worker_secret": ""
 }

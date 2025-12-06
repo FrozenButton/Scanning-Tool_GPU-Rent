@@ -64,7 +64,10 @@ class Worker(threading.Thread):
 
 
 def perform_gpu_job(payload: Dict[str, Any]) -> Dict[str, Any]:
-    resp = requests.post(rental_config.gpu_worker_url, json=payload, timeout=120)
+    headers = {}
+    if rental_config.gpu_worker_secret:
+        headers["X-Rental-Secret"] = rental_config.gpu_worker_secret
+    resp = requests.post(rental_config.gpu_worker_url, json=payload, headers=headers, timeout=120)
     resp.raise_for_status()
     return resp.json()
 

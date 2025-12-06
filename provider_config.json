@@ -1,0 +1,8 @@
+{
+  "bind_host": "0.0.0.0",
+  "bind_port": 5001,
+  "ollama_host": "http://127.0.0.1:11434",
+  "gpu_device": "0",
+  "default_model": "qwen2.5vl:3b",
+  "shared_secret": "change-me"
+}

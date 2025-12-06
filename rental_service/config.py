@@ -19,6 +19,7 @@ class RentalConfig:
         self.config_path = config_path
         self.credit_packs: Dict[str, CreditPack] = {}
         self.gpu_worker_url = os.environ.get("GPU_WORKER_URL", "http://127.0.0.1:5001/run")
+        self.gpu_worker_secret = os.environ.get("GPU_WORKER_SECRET", "")
         self.jwt_secret = os.environ.get("RENTAL_JWT_SECRET", "change-me")
         self.jwt_algorithm = "HS256"
         self.token_exp_minutes = int(os.environ.get("RENTAL_TOKEN_EXP_MINUTES", "60"))
@@ -42,10 +43,12 @@ class RentalConfig:
             self.credit_packs[pack_id] = CreditPack(credits=credits, stripe_price=price)
         self.gpu_worker_url = data.get("gpu_worker_url", self.gpu_worker_url)
         self.max_worker_concurrency = int(data.get("max_worker_concurrency", self.max_worker_concurrency))
+        self.gpu_worker_secret = data.get("gpu_worker_secret", self.gpu_worker_secret)
 
     def _seed_default_config(self) -> None:
         default = {
             "gpu_worker_url": self.gpu_worker_url,
+            "gpu_worker_secret": self.gpu_worker_secret,
             "max_worker_concurrency": self.max_worker_concurrency,
             "credit_packs": {
                 "starter_10": {"credits": 10, "stripe_price": "price_replace_me"},

@@ -14,6 +14,7 @@ Settings are read from `rental_config.json` (auto-created on first run) and envi
 
 Key options:
 - `gpu_worker_url`: HTTP endpoint the worker will call to execute the actual scan payload.
+- `gpu_worker_secret`: optional shared secret forwarded as `X-Rental-Secret` to the provider worker.
 - `max_worker_concurrency`: number of concurrent worker threads to launch.
 - `credit_packs`: pack IDs, credit amounts, and Stripe price IDs.
 - Environment variables:
