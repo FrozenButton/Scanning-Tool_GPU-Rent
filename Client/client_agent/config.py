@@ -5,7 +5,10 @@ from pathlib import Path
 from typing import Any, Dict
 
 
-DEFAULT_CLIENT_CONFIG_PATH = Path(os.environ.get("CLIENT_CONFIG_PATH", "client_config.json"))
+BASE_DIR = Path(__file__).resolve().parent.parent
+DEFAULT_CLIENT_CONFIG_PATH = Path(
+    os.environ.get("CLIENT_CONFIG_PATH", BASE_DIR / "client_config.json")
+)
 
 
 @dataclass

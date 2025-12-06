@@ -5,7 +5,10 @@ from pathlib import Path
 from typing import Any, Dict
 
 
-DEFAULT_PROVIDER_CONFIG_PATH = Path(os.environ.get("PROVIDER_CONFIG_PATH", "provider_config.json"))
+BASE_DIR = Path(__file__).resolve().parent.parent
+DEFAULT_PROVIDER_CONFIG_PATH = Path(
+    os.environ.get("PROVIDER_CONFIG_PATH", BASE_DIR / "provider_config.json")
+)
 
 
 @dataclass

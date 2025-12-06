@@ -5,7 +5,10 @@ from pathlib import Path
 from typing import Dict
 
 
-DEFAULT_CONFIG_PATH = Path(os.environ.get("RENTAL_CONFIG_PATH", "rental_config.json"))
+BASE_DIR = Path(__file__).resolve().parent.parent
+DEFAULT_CONFIG_PATH = Path(
+    os.environ.get("RENTAL_CONFIG_PATH", BASE_DIR / "rental_config.json")
+)
 
 
 @dataclass
@@ -25,7 +28,10 @@ class RentalConfig:
         self.token_exp_minutes = int(os.environ.get("RENTAL_TOKEN_EXP_MINUTES", "60"))
         self.stripe_secret_key = os.environ.get("STRIPE_SECRET_KEY", "")
         self.stripe_webhook_secret = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
-        self.database_url = os.environ.get("RENTAL_DATABASE_URL", "sqlite:///./rental_service.db")
+        default_db_path = BASE_DIR / "rental_service.db"
+        self.database_url = os.environ.get(
+            "RENTAL_DATABASE_URL", f"sqlite:///{default_db_path.as_posix()}"
+        )
         self.max_worker_concurrency = int(os.environ.get("GPU_MAX_CONCURRENCY", "1"))
         self.load()
 

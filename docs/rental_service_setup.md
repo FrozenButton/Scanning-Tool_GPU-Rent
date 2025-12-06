@@ -10,7 +10,7 @@ This guide shows how to run the paid-per-ping backend and package it as a standa
 - Job status polling so clients can wait for GPU results.
 
 ## Configuration
-Settings are read from `rental_config.json` (auto-created on first run) and environment variables.
+Settings are read from `Provider/rental_config.json` (auto-created on first run) and environment variables.
 
 Key options:
 - `gpu_worker_url`: HTTP endpoint the worker will call to execute the actual scan payload.
@@ -20,10 +20,11 @@ Key options:
 - Environment variables:
   - `RENTAL_JWT_SECRET`: secret for JWT signing (required in production).
   - `STRIPE_SECRET_KEY` / `STRIPE_WEBHOOK_SECRET`: Stripe credentials.
-  - `RENTAL_DATABASE_URL`: defaults to SQLite `rental_service.db` in the working directory.
+- `RENTAL_DATABASE_URL`: defaults to SQLite `rental_service.db` in the `Provider` working directory.
 
 ## Running the API locally
 ```bash
+cd Provider
 python -m rental_service.server
 ```
 This starts FastAPI on `http://0.0.0.0:5002` with background workers that pick up queued jobs.
@@ -37,7 +38,7 @@ This starts FastAPI on `http://0.0.0.0:5002` with background workers that pick u
 6. `GET /api/jobs/{job_id}` to poll status/result.
 
 ## Packaging as a Windows/Linux executable
-Use PyInstaller to keep the code closed-source when distributing to customers:
+Use PyInstaller to keep the code closed-source when distributing to customers (run from the `Provider` directory):
 ```bash
 pyinstaller --onefile --name rental_service_api rental_service/server.py
 ```
