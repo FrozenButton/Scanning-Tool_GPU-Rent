@@ -11,7 +11,20 @@ if "%~1"=="" (
     echo Commands: login ^| create-key ^| scan ^| poll
     echo Example: run_client.bat login --email user@example.com --password mypass
     echo Example: run_client.bat scan --payload ^"@payload.json^"
-    goto :eof
+    goto :pause_on_error
 )
 
 python -m client_agent.agent %*
+if errorlevel 1 goto :pause_on_error
+
+goto :eof
+
+:pause_on_error
+echo.
+echo The client exited with an error. Review the message above.
+echo Press any key to close this window...
+pause >nul
+exit /b 1
+
+:endlocal
+endlocal
