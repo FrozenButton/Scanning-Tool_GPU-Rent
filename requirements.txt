@@ -12,4 +12,4 @@ passlib[bcrypt]
 python-jose[cryptography]
 stripe
 requests
-pydantic
+pydantic[email]
